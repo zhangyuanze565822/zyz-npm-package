@@ -7,6 +7,7 @@ import {
   Row,
 } from '@tanstack/react-table';
 import {CSSProperties, useCallback} from 'react';
+import './style.css';
 // import cloneDeep from 'lodash/cloneDeep';
 
 interface TableProps {
