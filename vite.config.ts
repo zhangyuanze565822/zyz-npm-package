@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react-swc';
 import {resolve} from 'path';
 import dts from 'vite-plugin-dts';
 import {visualizer} from 'rollup-plugin-visualizer';
-
+import {libInjectCss} from 'vite-plugin-lib-inject-css';
 export default defineConfig({
   plugins: [
     react(),
@@ -12,6 +12,7 @@ export default defineConfig({
       include: 'src/lib',
     }),
     visualizer({open: false}),
+    libInjectCss(),
   ],
   build: {
     lib: {

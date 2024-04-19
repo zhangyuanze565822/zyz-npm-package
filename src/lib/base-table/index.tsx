@@ -6,7 +6,6 @@ import {
   Column,
   Row,
 } from '@tanstack/react-table';
-import './../style.css';
 import {CSSProperties, useCallback} from 'react';
 // import cloneDeep from 'lodash/cloneDeep';
 
