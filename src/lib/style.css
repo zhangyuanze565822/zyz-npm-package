@@ -1,0 +1,127 @@
+:root {
+  --border-color: #e5e6e6;
+  --bold-border-color: #000303;
+  --cell-height: 20px;
+  --header-size: 14px;
+  --body-size: 12px;
+}
+
+.table-container {
+  border: 1px solid var(--border-color);
+}
+table {
+  table-layout: fixed;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+}
+table thead {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  background: white;
+  /* &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 90;
+  } */
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 90;
+    border-left: 1px solid var(--border-color);
+  }
+}
+
+table th {
+  position: relative;
+  height: var(--cell-height);
+  padding: 0;
+  background: white;
+  white-space: nowrap;
+  font-weight: normal;
+  font-size: var(--header-size);
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid var(--border-color);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+table th.boldDashedLine {
+  &:before {
+    border-right: 2px dashed var(--bold-border-color);
+  }
+}
+
+.hiddenLine {
+  &:after {
+    border-bottom-style: none;
+  }
+}
+table tbody {
+  position: relative;
+  z-index: 80;
+  font-size: var(--body-size);
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 80;
+    border-left: 1px solid var(--border-color);
+  }
+}
+
+table td {
+  position: relative;
+  background: white;
+  height: var(--cell-height);
+  padding: 0;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-right: 1px dashed var(--border-color);
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 1px solid var(--border-color);
+  }
+}
+table td.boldDashedLine {
+  &:before {
+    border-right: 2px dashed var(--bold-border-color);
+  }
+}
+table td:last-child::before {
+  border-right-style: solid;
+}
