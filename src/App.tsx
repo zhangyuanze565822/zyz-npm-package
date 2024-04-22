@@ -19,6 +19,15 @@ const defaultColumns = Array(10)
 
 const baseColumn = [
   {
+    header: () => (
+      <span>
+        序<br />号
+      </span>
+    ),
+    accessorKey: `序号`,
+    size: 20,
+  },
+  {
     accessorKey: `llll`,
     header: `llll`,
     size: 50,
@@ -115,13 +124,15 @@ const isTotalRow = (row: any) => {
 };
 function App() {
   return (
-    <div className="w-[800px] h-[500px] overflow-scroll mx-auto my-10 table-container">
-      <BaseTable
-        data={defaultData}
-        columnPinning={['llll', 'llll33']}
-        isTotalRow={isTotalRow}
-        columns={[...baseColumn, ...defaultColumns]}
-      />
+    <div className="m-10">
+      <div className="w-[300px] h-[500px] overflow-scroll table-container">
+        <BaseTable
+          data={defaultData}
+          columnPinning={['序号', 'llll', 'llll33']}
+          isTotalRow={isTotalRow}
+          columns={[...baseColumn, ...defaultColumns]}
+        />
+      </div>
     </div>
   );
 }

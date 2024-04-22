@@ -2,7 +2,7 @@
   --border-color: #e5e6e6;
   --bold-border-color: #000303;
   --cell-height: 20px;
-  --header-size: 14px;
+  --header-size: 13px;
   --body-size: 12px;
 }
 
@@ -18,19 +18,11 @@
   }
   table thead {
     position: sticky;
-    top: 0;
+    top: 0px;
     left: 0;
     z-index: 90;
     background: white;
-    /* &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    border-bottom: 1px solid var(--border-color);
-    z-index: 90;
-  } */
+
     &:after {
       content: '';
       position: absolute;
@@ -54,8 +46,8 @@
     &:before {
       content: '';
       position: absolute;
-      top: 0;
       right: 0;
+      top: 0;
       bottom: 0;
       border-right: 1px solid var(--border-color);
     }
@@ -64,9 +56,12 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 100%;
+      right: 0;
       border-bottom: 1px solid var(--border-color);
     }
+  }
+  table th:last-child::before {
+    border-right: none;
   }
   table th.boldDashedLine {
     &:before {
@@ -74,7 +69,7 @@
     }
   }
 
-  .hiddenLine {
+  table th.hiddenLine {
     &:after {
       border-bottom-style: none;
     }
@@ -123,6 +118,10 @@
     }
   }
   table td:last-child::before {
-    border-right-style: solid;
+    border-right: none;
+  }
+
+  table tr:last-child td::after {
+    border-bottom: none;
   }
 }
