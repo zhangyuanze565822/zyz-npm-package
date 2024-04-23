@@ -2,12 +2,28 @@
   --border-color: #e5e6e6;
   --bold-border-color: #000303;
   --cell-height: 20px;
-  --header-size: 13px;
+  --header-size: 12px;
   --body-size: 12px;
 }
 
 .table-container {
-  border: 1px solid var(--border-color);
+  /* border: 1px solid var(--border-color); */
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  position: relative;
+  display: inline-block;
+
+  /* &:after {
+    content: '';
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 90;
+    border-left: 1px solid var(--border-color);
+  } */
 
   table {
     table-layout: fixed;
@@ -19,19 +35,30 @@
   table thead {
     position: sticky;
     top: 0px;
-    left: 0;
+    left: 0px;
     z-index: 90;
     background: white;
+    font-weight: 500;
 
-    &:after {
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    /* &:after {
       content: '';
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
-      z-index: 90;
+      z-index: 999;
       border-left: 1px solid var(--border-color);
-    }
+    } */
   }
 
   table th {
@@ -60,6 +87,7 @@
       border-bottom: 1px solid var(--border-color);
     }
   }
+
   table th:last-child::before {
     border-right: none;
   }
@@ -78,15 +106,15 @@
     position: relative;
     z-index: 80;
     font-size: var(--body-size);
-    &:after {
+    /* &:after {
       content: '';
       position: absolute;
       top: 0;
       bottom: 0;
       left: 0;
-      z-index: 80;
+      z-index: 999;
       border-left: 1px solid var(--border-color);
-    }
+    } */
   }
 
   table td {
@@ -94,6 +122,7 @@
     background: white;
     height: var(--cell-height);
     padding: 0;
+    line-height: 1.2;
 
     &:before {
       content: '';
@@ -117,11 +146,12 @@
       border-right: 2px dashed var(--bold-border-color);
     }
   }
+
   table td:last-child::before {
     border-right: none;
   }
 
-  table tr:last-child td::after {
+  /* table tr:last-child td::after {
     border-bottom: none;
-  }
+  } */
 }

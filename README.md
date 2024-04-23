@@ -1,4 +1,4 @@
-# 基于headless table 封装适用于韵达移动端使用的表格组件
+# 基于headless table 封装适用于移动端使用的表格组件
 
 ```
 import {BaseTable} from 'zyz-pkg';
@@ -17,7 +17,7 @@ border: 1px solid var(--border-color);
     </div>
 ```
 
-###demo
+### demo
 
 ```
   <div className="w-[800px] h-[500px] overflow-scroll mx-auto my-10 table-container">
@@ -63,4 +63,18 @@ border: 1px solid var(--border-color);
 const isTotalRow = (row: any) => {
   return row['id'] === 1;
 };
+```
+
+显示序号
+
+```
+  {
+    header: () => (
+      <span>
+        序<br />号
+      </span>
+    ),
+    accessorKey: `序号`,
+    size: 20,
+  },
 ```

@@ -25,7 +25,7 @@ const baseColumn = [
       </span>
     ),
     accessorKey: `序号`,
-    size: 20,
+    size: 30,
   },
   {
     accessorKey: `llll`,
@@ -125,7 +125,7 @@ const isTotalRow = (row: any) => {
 function App() {
   return (
     <div className="m-10">
-      <div className="w-[300px] h-[500px] overflow-scroll table-container">
+      <div className="h-[500px]">
         <BaseTable
           data={defaultData}
           columnPinning={['序号', 'llll', 'llll33']}
