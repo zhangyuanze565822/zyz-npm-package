@@ -4,23 +4,15 @@
 import {BaseTable} from 'zyz-pkg';
 ```
 
-样式需要考虑结合滚动容器 设置边框
-
 ```
-.table-container {
-border: 1px solid var(--border-color);
-}
-```
-
-```
-<div className="w-[500px] h-[500px] overflow-scroll table-container">
+<div className="w-[500px] h-[500px] overflow-scroll">
     </div>
 ```
 
 ### demo
 
 ```
-  <div className="w-[800px] h-[500px] overflow-scroll mx-auto my-10 table-container">
+  <div className="w-[800px] h-[500px] overflow-scroll">
     <BaseTable
         data={defaultData}
         columnPinning={['llll', 'llll33']}
