@@ -102,19 +102,49 @@ const baseColumn = [
     },
     cell: (info: any) => info.getValue(),
   },
+
   {
-    accessorKey: `xxxxx`,
-    header: `xxxxx`,
+    accessorKey: `test1`,
+    header: `test1`,
     columns: [
       {
-        accessorKey: `ffff`,
-        header: `fffff`,
+        accessorKey: `dfsdfdsf`,
+        header: `fdsfdsfdsfs`,
         cell: (info: any) => info.getValue(),
       },
       {
-        accessorKey: `ggggg`,
-        header: `ggggg`,
-        cell: (info: any) => info.getValue(),
+        accessorKey: `yyyyyyyyddd`,
+        header: `yyyyyyyyddd`,
+        columns: [
+          {
+            accessorKey: `test1112`,
+            header: `test1112`,
+            cell: (info: any) => info.getValue(),
+          },
+
+          {
+            accessorKey: `dddtest2`,
+            header: `dddtest2`,
+            cell: (info: any) => info.getValue(),
+          },
+        ],
+      },
+
+      {
+        accessorKey: `yyyyyyyy`,
+        header: `yyyyyyyy`,
+        columns: [
+          {
+            accessorKey: `test1111`,
+            header: `test1111`,
+            cell: (info: any) => info.getValue(),
+          },
+          {
+            accessorKey: `test11122`,
+            header: `test11122`,
+            cell: (info: any) => info.getValue(),
+          },
+        ],
       },
     ],
   },
@@ -124,15 +154,13 @@ const isTotalRow = (row: any) => {
 };
 function App() {
   return (
-    <div className="m-10">
-      <div className="h-[500px]">
-        <BaseTable
-          data={defaultData}
-          columnPinning={['序号', 'llll', 'llll33']}
-          isTotalRow={isTotalRow}
-          columns={[...baseColumn, ...defaultColumns]}
-        />
-      </div>
+    <div className="h-[500px] overflow-scroll w-[500px] m-10">
+      <BaseTable
+        data={defaultData}
+        columnPinning={['序号', 'llll', 'llll33']}
+        isTotalRow={isTotalRow}
+        columns={[...baseColumn, ...defaultColumns]}
+      />
     </div>
   );
 }

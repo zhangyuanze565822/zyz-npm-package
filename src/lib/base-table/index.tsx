@@ -6,7 +6,7 @@ import {
   Column,
   Row,
 } from '@tanstack/react-table';
-import {CSSProperties, useCallback} from 'react';
+import {CSSProperties, useCallback, useMemo} from 'react';
 import './style.css';
 // import cloneDeep from 'lodash/cloneDeep';
 
@@ -24,7 +24,7 @@ const getCommonPinningStyles = (column: Column<any>): CSSProperties => {
       left: `${column.getStart('left')}px`,
       position: 'sticky',
       // width: column.getSize(),
-      zIndex: 99,
+      zIndex: 999,
     };
   }
   return {};
@@ -41,11 +41,6 @@ export default function BaseTable({data, columns, columnPinning = [], isTotalRow
     },
     getCoreRowModel: getCoreRowModel(),
   });
-
-  // const isTotalRow = (row: any) => {
-  //   return row['id'] === 1;
-  // };
-
   const getTotalRowStyles = useCallback(
     (row: Row<any>): CSSProperties => {
       if (isTotalRow && isTotalRow(row.original)) {
@@ -57,27 +52,53 @@ export default function BaseTable({data, columns, columnPinning = [], isTotalRow
     },
     [isTotalRow],
   );
+  const headerGroups = table.getHeaderGroups();
+  const rowStack: any = useMemo(() => {
+    const stackObj: any = {};
+    headerGroups.forEach((headerGroup) => {
+      headerGroup.headers.forEach((header) => {
+        const headerId = header.column.id;
+        if (!stackObj[headerId]) {
+          stackObj[headerId] = {rowSpan: 1, hasMerged: false};
+        } else {
+          const headerObj = stackObj[headerId];
+          stackObj[headerId] = {
+            ...headerObj,
+            rowSpan: headerObj.rowSpan + 1,
+          };
+        }
+      });
+    });
+    return stackObj;
+  }, [headerGroups]);
 
   return (
     <div className="table-container">
       <table>
         <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  colSpan={header.colSpan}
-                  style={{...getCommonPinningStyles(header.column)}}
-                  className={`${header.isPlaceholder ? 'hiddenLine' : ''}${(header.column.columnDef.meta as any)?.boldDashedLine ? ' boldDashedLine' : ''}`}
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
+          {table.getHeaderGroups().map((headerGroup) => {
+            return (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  if (rowStack[header.column.id].hasMerged) {
+                    return null;
+                  }
+                  rowStack[header.column.id].hasMerged = true;
+                  return (
+                    <th
+                      key={header.id}
+                      colSpan={header.colSpan || 1}
+                      rowSpan={rowStack[header.column.id].rowSpan || 1}
+                      style={{...getCommonPinningStyles(header.column)}}
+                      className={`${(header.column.columnDef.meta as any)?.boldDashedLine ? 'boldDashedLine' : ''}${header.column.id === '序号' ? ' line' : ''}`}
+                    >
+                      {flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
+                  );
+                })}
+              </tr>
+            );
+          })}
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row, index) => (

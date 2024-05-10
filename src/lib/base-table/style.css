@@ -1,154 +1,106 @@
-:root {
-  --border-color: #e5e6e6;
-  --bold-border-color: #000303;
-  --cell-height: 20px;
-  --header-size: 12px;
-  --body-size: 12px;
-}
-
 .table-container {
-  /* border: 1px solid var(--border-color); */
-
   position: relative;
   display: inline-block;
+}
 
-  /* &:after {
-    content: '';
-    position: sticky;
-    left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 90;
-    border-left: 1px solid var(--border-color);
-  } */
+.table-container table {
+  table-layout: fixed;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 12px;
+}
 
-  table {
-    table-layout: fixed;
-    text-align: center;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 12px;
-  }
-  table thead {
-    position: sticky;
-    top: 0px;
-    left: 0px;
-    z-index: 90;
-    background: white;
-    font-weight: 500;
+.table-container table thead {
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+  background: white;
+  font-weight: 500;
+}
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 999;
-      border-bottom: 1px solid var(--border-color);
-    }
+.table-container table thead::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  border-bottom: 1px solid;
+  @apply border-borderColor;
+}
 
-    /* &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 999;
-      border-left: 1px solid var(--border-color);
-    } */
-  }
+.table-container table th {
+  position: relative;
+  padding: 0;
+  background: white;
+  white-space: nowrap;
+  font-weight: normal;
+  line-height: 1.5;
+}
 
-  table th {
-    position: relative;
-    height: var(--cell-height);
-    padding: 0;
-    background: white;
-    white-space: nowrap;
-    font-weight: normal;
-    font-size: var(--header-size);
+.table-container table th::before,
+.table-container table td::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid;
+  @apply border-borderColor;
+}
 
-    &:before {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      border-right: 1px solid var(--border-color);
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      border-bottom: 1px solid var(--border-color);
-    }
-  }
+.table-container table th::after,
+.table-container table td::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid;
+  @apply border-borderColor;
+}
 
-  table th:last-child::before {
-    border-right-style: solid;
-  }
-  table th.boldDashedLine {
-    &:before {
-      border-right: 2px dashed var(--bold-border-color);
-    }
-  }
+.table-container table th.boldDashedLine::before,
+.table-container table td.boldDashedLine::before {
+  border-right: 2px dashed #000303;
+}
 
-  table th.hiddenLine {
-    &:after {
-      border-bottom-style: none;
-    }
-  }
-  table tbody {
-    position: relative;
-    z-index: 80;
-    font-size: var(--body-size);
-    /* &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 999;
-      border-left: 1px solid var(--border-color);
-    } */
-  }
+.table-container table tbody {
+  position: relative;
+  z-index: 80;
+  font-size: 12px;
+}
 
-  table td {
-    position: relative;
-    background: white;
-    height: var(--cell-height);
-    padding: 0;
-    line-height: 1.2;
+.table-container table td {
+  position: relative;
+  background: white;
+  padding: 0;
+  line-height: 1.5;
+}
 
-    &:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      border-right: 1px dashed var(--border-color);
-    }
-    &:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      border-bottom: 1px solid var(--border-color);
-    }
-  }
-  table td.boldDashedLine {
-    &:before {
-      border-right: 2px dashed var(--bold-border-color);
-    }
-  }
+.table-container table td::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-right: 1px dashed;
+  @apply border-borderColor;
+}
 
-  table td:last-child::before {
-    border-right-style: solid;
-  }
+.table-container table td:first-child::before,
+.table-container table th.line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-left: 1px solid;
+  @apply border-borderColor;
+}
 
-  /* table tr:last-child td::after {
-    border-bottom: none;
-  } */
+.table-container table td:last-child::before {
+  border-style: solid;
 }
